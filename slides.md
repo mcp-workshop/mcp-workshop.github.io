@@ -332,6 +332,8 @@ ENLACES A LA VERSION JAVA Y NODE
 
 # 7. Preguntas❓ y Cierre!
 
+Os esperamos a todos el Jueves 3 de julio en Cafe con IA, mandaremos convocatoria en breve
+
 ---
 
 ## Recursos:
