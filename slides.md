@@ -25,16 +25,16 @@ footer: 'Taller de Agentes con MCP'
 - Ollama instalado: https://ollama.com/download
 - Cargar y probar el modelo Qwen 2.5:  
   ```$ ollama run qwen2.5```
-- Tener un IDE configurado para ejecutar proyectos Java, Node.js o Python (según tu elección)
+- Tener un IDE configurado para ejecutar proyectos Java 21, Node.js o Python (según tu elección)
 - Instalar Node.js, incluidos los que hagáis el taller en Java y Python, se necesita para mcpinspector:  
   ```https://nodejs.org/es/download```
-
+- Postman 11,(opcional) ```https://www.postman.com/downloads/```
 ---
 
 ## 🗓️ Agenda
 
 1. Introducción
-2. Crear primera herramienta MCP
+2. Crear primera servidor MCP
 ☕️ Descanso 5" ⏱️ 
 3. Crear primer agente usando MCP
 4. Crear y usar varios MCP, diferentes protocolos y cómo consumirlos
@@ -56,9 +56,10 @@ Apendices, Recursos y Tips
 
 * **Model Context Protocol**
 * Define cómo se comunican los agentes con modelos, recursos y herramientas.
-* Inspirado en arquitecturas de microservicios y flujos de agentes LLM.
+* Inspirado en arquitecturas de cliente-servidor , microservicios y flujos de agentes LLM.
 * Modular, extensible y agnóstico del lenguaje.
 
+![MCP Diagram](images/mcp.drawio.png)
 ---
 
 ## ¿Por qué MCP?
@@ -78,7 +79,7 @@ Apendices, Recursos y Tips
 
 🛠️ **Actividad**: Clonar proyecto base y ejecutar un ejemplo simple en cada lenguaje
 
-> ![Github](github.png) **paso0**
+> ![Github](images/github.png) **paso0**
 
 ---
 
@@ -87,8 +88,8 @@ Apendices, Recursos y Tips
 * MCP soporta distintos mecanismos de transporte:
 
   * `STDIO`: para herramientas CLI
-  * `SSE`: para streaming HTTP
-  * `Streamable HTTP`: interacción continua
+  * `SSE` (deprecated):  HTTP remoto. Stateful.
+  * `Streamable HTTP`: interacción continua.Stateless.
 
 ---
 <!-- _class: lead -->
@@ -104,7 +105,7 @@ Apendices, Recursos y Tips
 
 🧪 **Demo**: Añadir una función que le pases el código AEMET y devuelva la respuesta de AEMET cruda
 
-> ![Github](github.png) **paso1**
+> ![Github](images/github.png) **paso1**
 
 --- 
 
@@ -125,7 +126,7 @@ requests.get(data.get("datos"))
 
 🛠️ **Actividad**: Añadir una herramienta que use la función anterior
 
-> ![Github](github.png) **paso2**
+> ![Github](images/github.png) **paso2**
 
 ---
 
@@ -138,7 +139,9 @@ requests.get(data.get("datos"))
 
 🛠️ **Actividad**: Instalar y usar mcp-inspector con el agente anterior
 
-> ![Github](github.png) **paso2**
+> Opcional: Si está postman 11, probar lo mismo con postman.
+
+> ![Github](images/github.png) **paso2**
 
 ---
 
@@ -165,7 +168,7 @@ requests.get(data.get("datos"))
 
 🛠️ **Actividad**: Creamos un agente react, que es el más sencillo de desarrollar, y que llame a la herramienta anterior.
 
-> ![Github](github.png) **paso3**
+> ![Github](images/github.png) **paso3**
 
 ---
 
@@ -178,7 +181,7 @@ requests.get(data.get("datos"))
 
 🛠️ **Actividad**: Vamos a hacer una poda a la respuesta de AEMET. ¿Mejoran las respuestas? ¿Y el tiempo de ejecución?
 
-> ![Github](github.png) **paso4**
+> ![Github](images/github.png) **paso4**
 
 ---
 
@@ -198,7 +201,7 @@ requests.get(data.get("datos"))
 
 CALENDAR_URL=https://calendar.google.com/calendar/ical/0f7e8a7191ceda59262822a5fbed28f9dedae882137d0af94eddbbbdae292bd4%40group.calendar.google.com/public/basic.ics
 
-> ![Github](github.png) **paso5**
+> ![Github](images/github.png) **paso5**
 
 ---
 
@@ -208,7 +211,7 @@ CALENDAR_URL=https://calendar.google.com/calendar/ical/0f7e8a7191ceda59262822a5f
 
 🛠️ **Actividad**: Haz que tu agente use las dos herramientas en una sola consulta
 
-> ![Github](github.png) **paso6**
+> ![Github](images/github.png) **paso6**
 
 💡 Si os da tiempo, llamad a los MCP de otro compañero en otro lenguaje desde vuestro agente.
 
