@@ -8,14 +8,32 @@ description: Introducción, implementación práctica y observabilidad de MCP
 header: 'Tech Day June 25'
 footer: 'Taller de Agentes con MCP'
 --------------------------------------------------------------------------
-<!-- _class: portrait -->
-# Taller de Agentes con MCP - Node - Python Edition
+<!-- _class: lead -->
+
+# Taller de Agentes con MCP - 
+
+# 🟩 Node - Python 🐍 Edition
 
 ---
 
 ## Función de llamada a open meteo
 
 * Fución para llamar a open meteo: https://open-meteo.com/en/docs
+
+``` json
+{
+  ...
+  "daily": {
+    "time": ["2025-06-09"],
+    "precipitation_probability_max": [20],
+    "wind_speed_10m_max": [12.8],
+    "uv_index_max": [8.20],
+    "temperature_2m_min": [18.1],
+    "temperature_2m_max": [35.5],
+    "rain_sum": [0.00]
+  }
+}
+```
 
 > ![Github](images/github.png) **paso1**
 
@@ -38,7 +56,38 @@ https://www.latlong.net/
 
 🛠️ **Actividad**: Añadir una herramienta que use la función anterior
 
+``` python
+mcp = FastMCP("XXXX MCP Server")
+
+@mcp.tool()
+def load_bar(foo: str) -> dict:
+    """
+    Descripcion de lo que hace la herramienta, params, etc
+    """
+    # return codigo 
+```
+
 > ![Github](images/github.png) **paso2**
+
+---
+
+``` python
+from mcp.server.fastmcp import FastMCP
+from openweather import get_weather_data
+
+mcp = FastMCP("XXXX MCP Server")
+
+@mcp.tool()
+def load_bar(foo: str) -> dict:
+    """
+    Descripcion de lo que hace la herramienta, params, etc
+    """
+    # return codigo 
+
+if __name__ == "__main__":
+    mcp.run()
+
+```
 
 ---
 
@@ -83,6 +132,34 @@ https://www.latlong.net/
 > ![Github](images/github.png) **paso3**
 
 ---
+``` python
+model = ChatOllama(model="qwen2.5")
+
+server_params = StdioServerParameters(
+  command="uv",
+  args=["run", "python", "tool.py")],
+)
+
+async with stdio_client(server_params) as (read, write):
+  async with ClientSession(read, write) as session:
+      await session.initialize()
+      tools = await load_mcp_tools(session)
+
+
+      agent = create_react_agent(model, tools)
+              
+      messages = [
+        {"role": "system", "content": "Eres un agente"},
+        {"role": "user", "content": "¿Qué temperatura va a hacer mañana?"}
+      ]
+
+      agent_response = None
+      async for agent_response in agent.astream({"messages": messages}):
+        print(agent_response)
+        print("-----------------")
+```
+
+---
 
 ## El tamaño del prompt
 
@@ -91,7 +168,7 @@ https://www.latlong.net/
 ```spoiler, se queda con los últimos 32k.```
 * ¿Cómo podemos solucionar esto?
 
-🛠️ **Actividad**: Vamos a hacer una poda a la respuesta de AEMET. ¿Mejoran las respuestas? ¿Y el tiempo de ejecución?
+🛠️ **Actividad**: Vamos a hacer una poda a la respuesta. ¿Mejoran las respuestas? ¿Y el tiempo de ejecución?
 
 > ![Github](images/github.png) **paso4**
 
@@ -119,50 +196,39 @@ CALENDAR_URL=https://calendar.google.com/calendar/ical/0f7e8a7191ceda59262822a5f
 
 ## Usar las dos tools desde el agente
 
-* Actualizamos el agente para poder hacer consultas compuestas
+``` python
+client = MultiServerMCPClient({
+  "weather": {
+    "command": "uv",
+    "args": ["run", "python", os.path.join(os.path.dirname(__file__), "../tools/weather/main.py")],
+    "transport": "stdio",
+  },
+  "calendar": {
+    "url": "http://127.0.0.1:8000/sse",
+    "transport": "sse",
+  },
+})
 
-🛠️ **Actividad**: Haz que tu agente use las dos herramientas en una sola consulta
+tools = await client.get_tools()
+```
+🛠️ **Actividad**: Haz que tu agente use las dos herramientas en una sola consulta. 
+💡 probad desde vuestro agente los MCP de otro compañero en otro lenguaje.
+
 
 > ![Github](images/github.png) **paso6**
 
-💡 Si os da tiempo, llamad a los MCP de otro compañero en otro lenguaje desde vuestro agente.
-
----
-
-<!-- _class: lead -->
-
-# 5. El futuro de MCP
-
----
-
-## @resources
-
-* Variables globales: credenciales, configuraciones…
-* Útiles para separar lógica de entorno
-* Aún no están disponibles en casi ningún framework
-* LangGraph permite cargar @resources, pero hay que integrarlos manualmente en los agentes
-
-📟️ **Demo**: Definir el listado de códigos de AEMET y que sea el agente quien busque el código de tu localidad
-
----
-
-## @prompts y @roots
-
-* Prompts reutilizables por el agente
-* Diseño modular de tareas
-* Define el flujo principal del agente
-* Composición de herramientas, recursos y prompts
-* No están disponibles en la mayoría de frameworks
-* LangGraph permite cargar @prompts, no @roots
-
-📟️ **Demo**: Para qué usamos un prompt
-📟️ **Demo**: Crear un MCP que liste archivos de una carpeta
 
 ---
 <!-- _class: lead -->
 
 # ☕️ Descanso 5" ⏱️ 
 
-> volvemos a juntarnos despues del descanso
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
----
+> volvemos a juntarnos despues del descanso

@@ -125,7 +125,45 @@ Apendices, Recursos y Tips
 
 ---
 
+<!-- _class: lead -->
+
 # Pasar a Java o Node - Python
+
+---
+<!-- _class: lead -->
+
+# ☕️ Descanso 5" ⏱️ 
+
+---
+
+<!-- _class: lead -->
+
+# 5. El futuro de MCP
+
+---
+
+## @resources
+
+* Variables globales: credenciales, configuraciones…
+* Útiles para separar lógica de entorno
+* Aún no están disponibles en casi ningún framework
+* LangGraph permite cargar @resources, pero hay que integrarlos manualmente en los agentes
+
+📟️ **Demo**: Definir el listado de códigos de AEMET y que sea el agente quien busque el código de tu localidad
+
+---
+
+## @prompts y @roots
+
+* Prompts reutilizables por el agente
+* Diseño modular de tareas
+* Define el flujo principal del agente
+* Composición de herramientas, recursos y prompts
+* No están disponibles en la mayoría de frameworks
+* LangGraph permite cargar @prompts, no @roots
+
+📟️ **Demo**: Para qué usamos un prompt
+📟️ **Demo**: Crear un MCP que liste archivos de una carpeta
 
 ---
 
@@ -253,14 +291,3 @@ Apendices, Recursos y Tips
 🛠️ **Actividad paso6**: Haz que tu agente use las dos herramientas en una sola consulta
 🛠️ **Demo paso7**: Uso de LangFuse
 
----
-
-## Apendice: snippets Java
-
----
-
-## Apendice: snippets Nodejs
-
----
-
-## Apendice: snippets Python

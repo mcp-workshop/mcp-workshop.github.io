@@ -78,11 +78,13 @@ section blockquote {
   color: #444;
   font-style: italic;
   border-left: 0.3em solid #d1d1d1;
-  margin: 1.2em 0;
-  display: inline-block;
-  max-width: max-content;
-  position: absolute;
-  bottom: 1em;
+  margin: -1.5em 0;
+  max-width: 100%;
+  margin-left: 0em;
+  vertical-align: top;
+  position: relative;
+  align-self: flex-start;
+  margin-top: auto;
 }
 
 section blockquote p {
