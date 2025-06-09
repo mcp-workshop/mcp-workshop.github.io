@@ -18,7 +18,7 @@ footer: 'Taller de Agentes con MCP'
 
 ## Función de llamada a open meteo
 
-* Fución para llamar a open meteo: https://open-meteo.com/en/docs
+* Función para llamar a open meteo: https://open-meteo.com/en/docs
 
 ``` json
 {
@@ -98,7 +98,7 @@ if __name__ == "__main__":
 * Conectamos a la herramienta usando comando y argumentos
 * Probamos la herramienta
 
-🛠️ **Actividad**: Instalar y usar mcp-inspector con el mcp anterior
+🛠️ **Actividad**: Usar mcp-inspector con el mcp anterior
 
 > Opcional: Si está postman 11, probar lo mismo con postman.
 
@@ -118,7 +118,7 @@ if __name__ == "__main__":
 
 ---
 
-## Crear un agente básico. Patrones
+## Patrones de agente básico
 
   * **Reasoning and Acting (ReAct)**: Respuesta inmediata a estímulos.
   * **Workflow**: Secuencias predefinidas.
@@ -126,6 +126,8 @@ if __name__ == "__main__":
   * **Supervisor**: Monitoreo y corrección.
   * **Colaborativo**: Coordinación con otros agentes o humanos.
   * **Híbrido**: Combinación de enfoques.
+
+  https://spring.io/blog/2025/01/21/spring-ai-agentic-patterns
 
 🛠️ **Actividad**: Creamos un agente react, que es el más sencillo de desarrollar, y que llame a la herramienta anterior.
 
@@ -158,19 +160,6 @@ async with stdio_client(server_params) as (read, write):
         print(agent_response)
         print("-----------------")
 ```
-
----
-
-## El tamaño del prompt
-
-* ¿Qué pasa con el agente, no funciona?
-* Si superamos los 32K tokens que admite Qwen 2.5, ¿qué hace el agente? 
-```spoiler, se queda con los últimos 32k.```
-* ¿Cómo podemos solucionar esto?
-
-🛠️ **Actividad**: Vamos a hacer una poda a la respuesta. ¿Mejoran las respuestas? ¿Y el tiempo de ejecución?
-
-> ![Github](images/github.png) **paso4**
 
 ---
 

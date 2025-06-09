@@ -131,22 +131,7 @@ Apendices, Recursos y Tips
 <!-- sanguino -->
 ---
 
-## Implementaciones MCP
-
-* Java: Spring AI
-* Node.js: Langchain/graph + mcp sdk
-* Python: Langchain/graph + mcp sdk
-
-🛠️ **Actividad**: Clonar proyecto base y ejecutar un ejemplo simple en cada lenguaje
-
-  * Java: https://github.com/mcp-workshop/java-xxxxxx
-  * Node: https://github.com/mcp-workshop/taller-agentes-mcp-nodejs
-  * Python: https://github.com/mcp-workshop/taller-agentes-mcp-python
-
-
----
-
-## Introducción a MCP
+## Arquitectura MCP
 
 
 <div class="columns">
@@ -177,11 +162,48 @@ Apendices, Recursos y Tips
  ℹ️ https://modelcontextprotocol.io/docs/concepts/architecture
 
 ---
+
 <!-- _class: lead -->
 
-# 2. Priemer servidor MCP
+<div class="columns">
+<div>
+
+# Show me the code!
+
+</div>
+<div>
+
+![MCP Diagram](images/showmethecode.png)
+
+</div>
+</div>
+
+---
+
+## Clonamos el taller
+
+* Java: Spring AI
+* Node.js: Langchain/graph + mcp sdk
+* Python: Langchain/graph + mcp sdk
+
+🛠️ **Actividad**: Clonar proyecto base y ejecutar un ejemplo simple en cada lenguaje
+
+  * Java: https://github.com/mcp-workshop/java-xxxxxx
+  * Node: https://github.com/mcp-workshop/taller-agentes-mcp-nodejs
+  * Python: https://github.com/mcp-workshop/taller-agentes-mcp-python
+
+<!-- xxxxx -->
+
+---
+<!-- _class: lead -->
+
+# 2. Primer servidor MCP
+
+ENLACES A LA VERSION JAVA Y NODE
 
 > nos separamos en equipos
+
+
 
 ---
 
@@ -211,6 +233,8 @@ Apendices, Recursos y Tips
 - **Escalabilidad y Seguridad:** Diseñar arquitectura escalable y segura.
 - **Costes:** Estimar los costes de creación, run y mantenimiento.
 
+<!-- sanguino -->
+
 ---
 
 ## Comparación de Enfoques: Reactivos vs. Workflows
@@ -227,6 +251,9 @@ Apendices, Recursos y Tips
 
 👮‍♂️ ¡El caso de uso manda!
 
+<!-- sanguino -->
+
+
 --- 
 
 ## Prompts cuidados y herramientas afinadas
@@ -234,6 +261,8 @@ Apendices, Recursos y Tips
 - **Prompt Engineering:** Es fundamental diseñar un buen prompt: como hemos visto, aunque tengamos los mejores datos, si el prompt es malo, los resultados serán pobres o irrelevantes. El prompt es la clave para obtener respuestas útiles y precisas.
 
 - **Preparar las Respuestas de las Herramientas:** No basta con devolver todo el contenido "a lo bruto" y dejar que el agente lo gestione. Es mucho mejor limpiar, preparar y formatear las respuestas desde la propia herramienta. Todo lo que se pueda hacer con código para facilitar el trabajo al agente, ¡hazlo! Así se obtienen agentes más eficientes y resultados más útiles.
+
+<!-- josete -->
 
 ---
 
@@ -243,6 +272,8 @@ Apendices, Recursos y Tips
 - **Reactivos:** Pruebas de regresión complejas, validación exhaustiva de nuevos comportamientos.
 - **Actualizaciones:** Estrategias para minimizar impactos y asegurar funcionalidad.
 
+<!-- sanguino -->
+
 ---
 
 ## Seguridad y Guardarraíles
@@ -251,6 +282,23 @@ Apendices, Recursos y Tips
 - **Guardarraíles:** Validación de entradas y salidas. Establecer límites, evitar acciones no deseadas, ética y enfoque de marca. Control de errores y respuestas maliciosas
 - **Enfoque Reactivo:** Mayor atención a la seguridad dinámica y control de acceso en tiempo real.
 - **Enfoque Workflow:** Mayor énfasis en la seguridad predefinida y validación de flujos de trabajo.
+
+<!-- josete -->
+
+---
+
+## El tamaño del prompt
+
+* ¿Qué pasa con el agente, no funciona?
+* Si superamos los 32K tokens que admite Qwen 2.5, ¿qué hace el agente? 
+```spoiler, se queda con los últimos 32k.```
+* ¿Cómo podemos solucionar esto?
+
+🛠️ **Actividad**: Vamos a hacer una poda a la respuesta. ¿Mejoran las respuestas? ¿Y el tiempo de ejecución?
+
+> ![Github](images/github.png) **paso4**
+
+<!-- sanguino -->
 
 ---
 
@@ -265,6 +313,8 @@ Apendices, Recursos y Tips
 2. Instrumentar agente con Langfuse
 3. Ver ejecución desde el dashboard
 
+<!-- sanguino -->
+
 ---
 
 ## Buenas prácticas
@@ -273,6 +323,8 @@ Apendices, Recursos y Tips
 ✅ Pequeños agentes especializados, como en todo  
 ✅ Pruebas e2e para validar, de componente para desarrollar, usa herramientas como mcp-inspector  
 ✅ Observabilidad desde el inicio, usa herramientas como Langfuse
+
+<!-- josete -->
 
 ---
 
@@ -289,7 +341,10 @@ Apendices, Recursos y Tips
   * [mcp-inspector](https://github.com/modelcontextprotocol/inspector)
   * [Langfuse](https://langfuse.com)
   * [Claude](https://claude.ai/login?returnTo=%2F%3F#features)
-  * [Awesome MCP Servers](https://mcpservers.org/)
+  * [Awesome MCP Servers](https://mcpservers.org/) ⚠️
+  * [MCP.so](https://mcp.so/) ⚠️
+
+<!-- josete -->
 
 ---
 
