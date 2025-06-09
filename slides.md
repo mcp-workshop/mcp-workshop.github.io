@@ -8,27 +8,66 @@ description: Introducción, implementación práctica y observabilidad de MCP
 header: 'Tech Day June 25'
 footer: 'Taller de Agentes con MCP'
 --------------------------------------------------------------------------
+
+<!-- _class: lead -->
+
+<div class="columns">
+<div>
+
+# Taller de Agentes con MCP
+
+</div>
+<div>
+
+![MCP Diagram](images/robot.jpg)
+
+
+</div>
+</div>
+
+
+---
+
 <!-- _class: portrait -->
 # Taller de Agentes con MCP
 
 ## Objetivos
 
-* Introducir el concepto de MCP. ¿Por qué es relevante MCP hoy?
+* Introducir el concepto de agentes usando MCP. ¿Por qué es relevante MCP hoy?
 * Implementar herramientas y agentes con Java, Python y JavaScript.
-* Aprender y aplicar buenas prácticas.
+* Crear comunidad en ING
 
+<!-- sanguino -->
 ---
 
 ## 💻 Requisitos:
 
 - Portátil personal con 16 GB de RAM o más (mejor si tiene GPU)
-- Ollama instalado: https://ollama.com/download (para ejecutar modelos LLM localmente)
-- Cargar y probar el modelo Qwen 2.5:  
-  ```$ ollama run qwen2.5```
-- Tener un IDE configurado para ejecutar proyectos Java 21, Node.js o Python (según tu elección)
-- Instalar Node.js, incluidos los que hagáis el taller en Java y Python, se necesita para mcpinspector:  
-  ```https://nodejs.org/es/download```
+
+<div class="columns">
+<div>
+
+Con ollama:
+
+- Ollama instalado: https://ollama.com/download
+- Cargar y probar el modelo Qwen 2.5: ```$ ollama run qwen2.5```
+
+</div>
+<div>
+
+Sin ollama:
+
+- Conectar con Antropic, porporcionamos el api key
+
+</div>
+</div>
+
+
+- Tener un IDE configurado para ejecutar proyectos Java 21, Node.js o Python
+- Instalar Node.js, incluidos los que hagáis el taller en Java y Python, se necesita para mcpinspector: ```https://nodejs.org/es/download```
 - Postman 11 (opcional) ```https://www.postman.com/downloads/```
+
+<!-- quitamos -->
 
 ---
 
@@ -45,21 +84,12 @@ footer: 'Taller de Agentes con MCP'
 7. Preguntas y Cierre ❓
 Apendices, Recursos y Tips
 
+<!-- sanguino -->
 ---
 
 <!-- _class: lead -->
 
 # 1. Introducción
-
----
-
-## ¿Qué es MCP?
-
-* **Model Context Protocol**
-
-* Define cómo se comunican los agentes con modelos, recursos y herramientas.
-* Inspirado en arquitecturas de cliente-servidor , microservicios y flujos de agentes LLM.
-* Modular, extensible y agnóstico del lenguaje.
 
 ---
 
@@ -74,10 +104,17 @@ Apendices, Recursos y Tips
 </div>
 <div>
 
-"MCP es como el ‘enchufe universal’ para conectar agentes y herramientas”. MCP resuelve el problema de la integración y comunicación entre agentes, modelos y herramientas heterogéneas, proporcionando un protocolo unificado y modular que simplifica la interoperabilidad y reduce la complejidad frente a arquitecturas tradicionales.
+* **Model Context Protocol**
+
+* Define cómo se comunican los agentes con modelos, recursos y herramientas.
+* Inspirado en arquitecturas de cliente-servidor , microservicios y flujos de agentes.
+* Modular, extensible y agnóstico del lenguaje.
+* Basado en JSON-RPC
 
 </div>
 </div>
+
+<!-- josete -->
 
 ---
 
@@ -87,39 +124,62 @@ Apendices, Recursos y Tips
 * Permite la reutilización y escalado
 * Facilita el testing, evolución, depuración, trazabilidad y despliegue
 * Habilita la interoperabilidad entre diferentes tecnologías
+* Standard de facto
 
 ¿Quieres que tu agente en Python hable con una herramienta en Node? Con MCP es directo.
 
+<!-- sanguino -->
 ---
 
 ## Implementaciones MCP
 
-* Java: Spring Boot
+* Java: Spring AI
 * Node.js: Langchain/graph + mcp sdk
 * Python: Langchain/graph + mcp sdk
 
 🛠️ **Actividad**: Clonar proyecto base y ejecutar un ejemplo simple en cada lenguaje
 
-  * Java: https://github.com/mcp-workshop/java-client
+  * Java: https://github.com/mcp-workshop/java-xxxxxx
   * Node: https://github.com/mcp-workshop/taller-agentes-mcp-nodejs
   * Python: https://github.com/mcp-workshop/taller-agentes-mcp-python
 
-> ![Github](images/github.png) **paso0**
 
 ---
 
 ## Introducción a MCP
 
-* MCP soporta distintos mecanismos de transporte:
 
-  * STDIO: “Ideal para scripts y herramientas locales.”
-  * SSE: “Para conexiones HTTP persistentes (en desuso, pero útil para entender la evolución).”
-  * Streamable HTTP: “El más moderno, permite respuestas en tiempo real y escalabilidad.”
+<div class="columns">
+<div>
+
+
+### Transportes:
+
+* STDIO: “Ideal para scripts y herramientas locales.”
+* SSE: “Para conexiones HTTP persistentes”
+* Streamable HTTP: “El más moderno, permite respuestas en tiempo real y escalabilidad.”
+
+
+</div>
+<div>
+
+### Primitivas:
+
+* @tools
+* @prompts
+* @resources
+* @sampling
+* @roots
+
+</div>
+</div>
+ 
+ ℹ️ https://modelcontextprotocol.io/docs/concepts/architecture
 
 ---
 <!-- _class: lead -->
 
-# 2. Crear primera herramienta MCP
+# 2. Priemer servidor MCP
 
 > nos separamos en equipos
 
@@ -133,37 +193,6 @@ Apendices, Recursos y Tips
 <!-- _class: lead -->
 
 # ☕️ Descanso 5" ⏱️ 
-
----
-
-<!-- _class: lead -->
-
-# 5. El futuro de MCP
-
----
-
-## @resources
-
-* Variables globales: credenciales, configuraciones…
-* Útiles para separar lógica de entorno
-* Aún no están disponibles en casi ningún framework
-* LangGraph permite cargar @resources, pero hay que integrarlos manualmente en los agentes
-
-📟️ **Demo**: Definir el listado de códigos de AEMET y que sea el agente quien busque el código de tu localidad
-
----
-
-## @prompts y @roots
-
-* Prompts reutilizables por el agente
-* Diseño modular de tareas
-* Define el flujo principal del agente
-* Composición de herramientas, recursos y prompts
-* No están disponibles en la mayoría de frameworks
-* LangGraph permite cargar @prompts, no @roots
-
-📟️ **Demo**: Para qué usamos un prompt
-📟️ **Demo**: Crear un MCP que liste archivos de una carpeta
 
 ---
 
@@ -279,15 +308,3 @@ Apendices, Recursos y Tips
   ```
 
 ---
-
-## Apéndice: listado de pasos y actividades
-
-🛠️ **Actividad paso0**: Clonar proyecto base y ejecutar un ejemplo simple en cada lenguaje
-🛠️ **Actividad paso1**: Añadir una función que le pases el código AEMET y devuelva la respuesta de AEMET cruda
-🛠️ **Actividad paso2**: Añadir una herramienta que use la función anterior
-🛠️ **Actividad paso3**: Creamos un agente react, que es el más sencillo de desarrollar, y que llame a la herramienta anterior.
-🛠️ **Actividad paso4**: Vamos a hacer una poda a la respuesta de AEMET. ¿Mejoran las respuestas? ¿Y el tiempo de ejecución?
-🛠️ **Actividad paso5**: Añadir una función que llame a un calendario ICS y devuelva un JSON con tus eventos
-🛠️ **Actividad paso6**: Haz que tu agente use las dos herramientas en una sola consulta
-🛠️ **Demo paso7**: Uso de LangFuse
-
