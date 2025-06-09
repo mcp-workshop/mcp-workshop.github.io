@@ -1,0 +1,102 @@
+/* @theme marping */
+
+@import 'default';
+
+footer, header {
+  font-family: 'INGMeWeb', Arial, sans-serif;
+  font-size: 0.9em;
+  color: #888;
+  text-align: left;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  padding-right: 2em;
+}
+
+@font-face {
+  font-family: 'INGMeWeb';
+  src: url('./INGMeWeb-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'INGMeWeb';
+  src: url('./INGMeWeb-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+section.lead h1, section.portrait h1 {
+  font-family: 'INGMeWeb', Arial, sans-serif;
+  font-weight: 700;
+  background-color: #ff6200;
+  color: white;
+  border-radius: 0.5em;
+  display: inline-block;
+  padding: 0.2em 0.8em;
+  max-width: 80%;
+}
+
+section.portrait h1 {
+  text-align: center;
+  border-radius: 0.5em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:53%;
+  margin-bottom: 2em;
+}
+
+h2 {
+  font-family: 'INGMeWeb', Arial, sans-serif;
+  font-weight: 700;
+  color: #ff6200;
+}
+
+a, a:visited {
+  color: #9e3a04;
+  text-decoration: underline;
+}
+
+section:not(.lead) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+section blockquote {
+  background: #f2f2f2;
+  border-radius: 0.7em;
+  padding: 0.5em 1em;
+  color: #444;
+  font-style: italic;
+  border-left: 0.3em solid #d1d1d1;
+  margin: 1.2em 0;
+  display: inline-block;
+  max-width: max-content;
+  position: absolute;
+  bottom: 1em;
+}
+
+section blockquote p {
+  position: relative;
+  top: -0.5em;
+}
+
+section blockquote img {
+  position: relative;
+  top: 0.5em;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}

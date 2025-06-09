@@ -13,7 +13,7 @@ footer: 'Taller de Agentes con MCP'
 
 ## Objetivos
 
-* Introducir el concepto de MCP.
+* Introducir el concepto de MCP. ¿Por qué es relevante MCP hoy?
 * Implementar herramientas y agentes con Java, Python y JavaScript.
 * Aprender y aplicar buenas prácticas.
 
@@ -22,13 +22,14 @@ footer: 'Taller de Agentes con MCP'
 ## 💻 Requisitos:
 
 - Portátil personal con 16 GB de RAM o más (mejor si tiene GPU)
-- Ollama instalado: https://ollama.com/download
+- Ollama instalado: https://ollama.com/download (para ejecutar modelos LLM localmente)
 - Cargar y probar el modelo Qwen 2.5:  
   ```$ ollama run qwen2.5```
 - Tener un IDE configurado para ejecutar proyectos Java 21, Node.js o Python (según tu elección)
 - Instalar Node.js, incluidos los que hagáis el taller en Java y Python, se necesita para mcpinspector:  
   ```https://nodejs.org/es/download```
-- Postman 11,(opcional) ```https://www.postman.com/downloads/```
+- Postman 11 (opcional) ```https://www.postman.com/downloads/```
+
 ---
 
 ## 🗓️ Agenda
@@ -55,29 +56,53 @@ Apendices, Recursos y Tips
 ## ¿Qué es MCP?
 
 * **Model Context Protocol**
+
 * Define cómo se comunican los agentes con modelos, recursos y herramientas.
 * Inspirado en arquitecturas de cliente-servidor , microservicios y flujos de agentes LLM.
 * Modular, extensible y agnóstico del lenguaje.
 
+---
+
+## ¿Qué es MCP?
+
+
+<div class="columns">
+<div>
+
 ![MCP Diagram](images/mcp.drawio.png)
+
+</div>
+<div>
+
+"MCP es como el ‘enchufe universal’ para conectar agentes y herramientas”. MCP resuelve el problema de la integración y comunicación entre agentes, modelos y herramientas heterogéneas, proporcionando un protocolo unificado y modular que simplifica la interoperabilidad y reduce la complejidad frente a arquitecturas tradicionales.
+
+</div>
+</div>
+
 ---
 
 ## ¿Por qué MCP?
 
 * Modularidad y separación de responsabilidades
-* Protocolo unificado para prompts, recursos y herramientas
-* Facilita depuración, trazabilidad y despliegue
+* Permite la reutilización y escalado
+* Facilita el testing, evolución, depuración, trazabilidad y despliegue
 * Habilita la interoperabilidad entre diferentes tecnologías
+
+¿Quieres que tu agente en Python hable con una herramienta en Node? Con MCP es directo.
 
 ---
 
 ## Implementaciones MCP
 
 * Java: Spring Boot
-* Node.js: Express + mcp-server
-* Python: FastAPI + mcp-lib
+* Node.js: Langchain/graph + mcp sdk
+* Python: Langchain/graph + mcp sdk
 
 🛠️ **Actividad**: Clonar proyecto base y ejecutar un ejemplo simple en cada lenguaje
+
+  * Java: https://github.com/mcp-workshop/java-client
+  * Node: https://github.com/mcp-workshop/taller-agentes-mcp-nodejs
+  * Python: https://github.com/mcp-workshop/taller-agentes-mcp-python
 
 > ![Github](images/github.png) **paso0**
 
@@ -87,169 +112,20 @@ Apendices, Recursos y Tips
 
 * MCP soporta distintos mecanismos de transporte:
 
-  * `STDIO`: para herramientas CLI
-  * `SSE` (deprecated):  HTTP remoto. Stateful.
-  * `Streamable HTTP`: interacción continua.Stateless.
+  * STDIO: “Ideal para scripts y herramientas locales.”
+  * SSE: “Para conexiones HTTP persistentes (en desuso, pero útil para entender la evolución).”
+  * Streamable HTTP: “El más moderno, permite respuestas en tiempo real y escalabilidad.”
 
 ---
 <!-- _class: lead -->
 
 # 2. Crear primera herramienta MCP
 
----
-
-## Función de llamada a AEMET
-
-* Código ejecutable que el agente puede usar
-* Pueden ser funciones locales o llamadas externas
-
-🧪 **Demo**: Añadir una función que le pases el código AEMET y devuelva la respuesta de AEMET cruda
-
-> ![Github](images/github.png) **paso1**
-
---- 
-
-## Función de llamada a AEMET
-
-1. Pedir apikey aquí: https://opendata.aemet.es/centrodedescargas/altaUsuario
-2. Llamada a usar /api/prediccion/especifica/municipio/diaria/{municipio}?api_key={apikeyaemet}
-3. Municipio de ejemplo: Las Rozas: 28127 o buscar uno en https://www.ine.es/daco/daco42/codmun/diccionario24.xlsx
-4. Respuesta JSON con urls, llamar a la url respuesta.datos
-5. Segunda llamada ya tiene los datos del tiempo de verdad
-requests.get(data.get("datos"))
-
- Swagger: https://opendata.aemet.es/dist/index.html?#/predicciones-especificas/Predicci%C3%B3n%20por%20municipios%20diaria.%20Tiempo%20actual
-
---- 
-
-## Crear servidor MCP y convertir la función en herramienta
-
-🛠️ **Actividad**: Añadir una herramienta que use la función anterior
-
-> ![Github](images/github.png) **paso2**
+> nos separamos en equipos
 
 ---
 
-## Probar nuestra herramienta: mcp-inspector
-
-```$ npx @modelcontextprotocol/inspector```
-
-* Conectamos a la herramienta usando comando y argumentos
-* Probamos la herramienta, usamos 28127 para probar
-
-🛠️ **Actividad**: Instalar y usar mcp-inspector con el agente anterior
-
-> Opcional: Si está postman 11, probar lo mismo con postman.
-
-> ![Github](images/github.png) **paso2**
-
----
-
-<!-- _class: lead -->
-
-# ☕️ Descanso 5" ⏱️ 
-
----
-
-<!-- _class: lead -->
-
-# 3. Crear primer agente usando MCP
-
----
-
-## Crear un agente básico. Patrones
-
-  * **Reasoning and Acting (ReAct)**: Respuesta inmediata a estímulos.
-  * **Workflow**: Secuencias predefinidas.
-  * **Planificador/Ejecutor**: Decisión separada de ejecución.
-  * **Supervisor**: Monitoreo y corrección.
-  * **Colaborativo**: Coordinación con otros agentes o humanos.
-  * **Híbrido**: Combinación de enfoques.
-
-🛠️ **Actividad**: Creamos un agente react, que es el más sencillo de desarrollar, y que llame a la herramienta anterior.
-
-> ![Github](images/github.png) **paso3**
-
----
-
-## El tamaño del prompt
-
-* ¿Qué pasa con el agente, no funciona?
-* Si superamos los 32K tokens que admite Qwen 2.5, ¿qué hace el agente? 
-```spoiler, se queda con los últimos 32k.```
-* ¿Cómo podemos solucionar esto?
-
-🛠️ **Actividad**: Vamos a hacer una poda a la respuesta de AEMET. ¿Mejoran las respuestas? ¿Y el tiempo de ejecución?
-
-> ![Github](images/github.png) **paso4**
-
----
-
-<!-- _class: lead -->
-
-# 4. Crear y usar varios MCP, diferentes protocolos y cómo consumirlos
-
----
-
-## Crear una tool de calendario
-
-* Hacer lo mismo pero llamando a un calendario
-* Pista: usar librería para entender CalDAV
-* Exponerla como REST en vez de STDIO
-
-🛠️ **Actividad**: Añadir una función que llame a un calendario ICS y devuelva un JSON con tus eventos
-
-CALENDAR_URL=https://calendar.google.com/calendar/ical/0f7e8a7191ceda59262822a5fbed28f9dedae882137d0af94eddbbbdae292bd4%40group.calendar.google.com/public/basic.ics
-
-> ![Github](images/github.png) **paso5**
-
----
-
-## Usar las dos tools desde el agente
-
-* Actualizamos el agente para poder hacer consultas compuestas
-
-🛠️ **Actividad**: Haz que tu agente use las dos herramientas en una sola consulta
-
-> ![Github](images/github.png) **paso6**
-
-💡 Si os da tiempo, llamad a los MCP de otro compañero en otro lenguaje desde vuestro agente.
-
----
-
-<!-- _class: lead -->
-
-# 5. El futuro de MCP
-
----
-
-## @resources
-
-* Variables globales: credenciales, configuraciones…
-* Útiles para separar lógica de entorno
-* Aún no están disponibles en casi ningún framework
-* LangGraph permite cargar @resources, pero hay que integrarlos manualmente en los agentes
-
-📟️ **Demo**: Definir el listado de códigos de AEMET y que sea el agente quien busque el código de tu localidad
-
----
-
-## @prompts y @roots
-
-* Prompts reutilizables por el agente
-* Diseño modular de tareas
-* Define el flujo principal del agente
-* Composición de herramientas, recursos y prompts
-* No están disponibles en la mayoría de frameworks
-* LangGraph permite cargar @prompts, no @roots
-
-📟️ **Demo**: Para qué usamos un prompt
-📟️ **Demo**: Crear un MCP que liste archivos de una carpeta
-
----
-<!-- _class: lead -->
-
-# ☕️ Descanso 5" ⏱️ 
+# Pasar a Java o Node - Python
 
 ---
 
@@ -388,4 +264,3 @@ CALENDAR_URL=https://calendar.google.com/calendar/ical/0f7e8a7191ceda59262822a5f
 ---
 
 ## Apendice: snippets Python
-
