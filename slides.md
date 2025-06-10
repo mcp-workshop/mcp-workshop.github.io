@@ -5,7 +5,7 @@ theme: marping
 paginate: false
 title: Taller de Agentes con MCP
 description: Introducción, implementación práctica y observabilidad de MCP
-header: 'Tech Day June 25'
+header: '🤖 Tech Day June 25 '
 footer: 'Taller de Agentes con MCP'
 --------------------------------------------------------------------------
 
@@ -37,7 +37,7 @@ footer: 'Taller de Agentes con MCP'
 * Implementar herramientas y agentes con Java, Python y JavaScript.
 * Crear comunidad en ING
 
-<!-- sanguino -->
+<!-- footer: 'Taller de Agentes con MCP🐤' -->
 ---
 
 ## 💻 Requisitos:
@@ -73,18 +73,19 @@ Sin ollama:
 
 ## 🗓️ Agenda
 
-1. Introducción
-2. Crear primera servidor MCP
+1. Introducción 20"
+2. Crear primera servidor MCP (weather) 20"
 ☕️ Descanso 5" ⏱️ 
-3. Crear primer agente usando MCP
-4. Crear y usar varios MCP, diferentes protocolos y cómo consumirlos
-5. El futuro de MCP
+3. Crear primer agente usando MCP 20"
+4. Crear y usar varios MCP, diferentes protocolos y cómo consumirlos (calendario) 20"
+5. El futuro de MCP 10 "
 ☕️ Descanso 5" ⏱️ 
-6. Route to production!
-7. Preguntas y Cierre ❓
-Apendices, Recursos y Tips
+6. Route to production! (drive) 20"
+7. Preguntas y Cierre ❓ 30"
+Apendices, Recursos y Tips 10"
 
-<!-- sanguino -->
+<!-- footer: 'Taller de Agentes con MCP🐍' -->
+
 ---
 
 <!-- _class: lead -->
@@ -114,9 +115,16 @@ Apendices, Recursos y Tips
 </div>
 </div>
 
-<!-- josete -->
+<!-- footer: 'Taller de Agentes con MCP🐤' -->
 
 ---
+
+
+
+
+
+<div class="columns">
+<div>
 
 ## ¿Por qué MCP?
 
@@ -126,9 +134,20 @@ Apendices, Recursos y Tips
 * Habilita la interoperabilidad entre diferentes tecnologías
 * Standard de facto
 
-¿Quieres que tu agente en Python hable con una herramienta en Node? Con MCP es directo.
 
-<!-- sanguino -->
+
+</div>
+<div>
+
+![MCP Diagram](images/interoperabilidad.png)
+
+
+</div>
+</div>
+
+
+
+<!-- footer: 'Taller de Agentes con MCP🐍' -->
 ---
 
 ## Arquitectura MCP
@@ -161,22 +180,14 @@ Apendices, Recursos y Tips
  
  ℹ️ https://modelcontextprotocol.io/docs/concepts/architecture
 
+<!-- footer: 'Taller de Agentes con MCP🐤' -->
+
 ---
 
-<!-- _class: lead -->
+<img src="images/showmethecode.png" class="centered" alt="MCP Diagram" />
 
-<div class="columns">
-<div>
 
-# Show me the code!
-
-</div>
-<div>
-
-![MCP Diagram](images/showmethecode.png)
-
-</div>
-</div>
+<!-- footer: 'Taller de Agentes con MCP🐍' -->
 
 ---
 
@@ -192,7 +203,7 @@ Apendices, Recursos y Tips
   * Node: https://github.com/mcp-workshop/taller-agentes-mcp-nodejs
   * Python: https://github.com/mcp-workshop/taller-agentes-mcp-python
 
-<!-- xxxxx -->
+<!-- footer: 'Taller de Agentes con MCP🐍' -->
 
 ---
 <!-- _class: lead -->
@@ -233,7 +244,7 @@ ENLACES A LA VERSION JAVA Y NODE
 - **Escalabilidad y Seguridad:** Diseñar arquitectura escalable y segura.
 - **Costes:** Estimar los costes de creación, run y mantenimiento.
 
-<!-- sanguino -->
+<!-- footer: 'Taller de Agentes con MCP🐍' -->
 
 ---
 
@@ -251,7 +262,7 @@ ENLACES A LA VERSION JAVA Y NODE
 
 👮‍♂️ ¡El caso de uso manda!
 
-<!-- sanguino -->
+<!-- footer: 'Taller de Agentes con MCP🐍' -->
 
 
 --- 
@@ -262,7 +273,7 @@ ENLACES A LA VERSION JAVA Y NODE
 
 - **Preparar las Respuestas de las Herramientas:** No basta con devolver todo el contenido "a lo bruto" y dejar que el agente lo gestione. Es mucho mejor limpiar, preparar y formatear las respuestas desde la propia herramienta. Todo lo que se pueda hacer con código para facilitar el trabajo al agente, ¡hazlo! Así se obtienen agentes más eficientes y resultados más útiles.
 
-<!-- josete -->
+<!-- footer: 'Taller de Agentes con MCP🐤' -->
 
 ---
 
@@ -272,7 +283,7 @@ ENLACES A LA VERSION JAVA Y NODE
 - **Reactivos:** Pruebas de regresión complejas, validación exhaustiva de nuevos comportamientos.
 - **Actualizaciones:** Estrategias para minimizar impactos y asegurar funcionalidad.
 
-<!-- sanguino -->
+<!-- footer: 'Taller de Agentes con MCP🐍' -->
 
 ---
 
@@ -283,7 +294,7 @@ ENLACES A LA VERSION JAVA Y NODE
 - **Enfoque Reactivo:** Mayor atención a la seguridad dinámica y control de acceso en tiempo real.
 - **Enfoque Workflow:** Mayor énfasis en la seguridad predefinida y validación de flujos de trabajo.
 
-<!-- josete -->
+<!-- footer: 'Taller de Agentes con MCP🐤' -->
 
 ---
 
@@ -298,7 +309,7 @@ ENLACES A LA VERSION JAVA Y NODE
 
 > ![Github](images/github.png) **paso4**
 
-<!-- sanguino -->
+<!-- footer: 'Taller de Agentes con MCP🐍' -->
 
 ---
 
@@ -313,7 +324,7 @@ ENLACES A LA VERSION JAVA Y NODE
 2. Instrumentar agente con Langfuse
 3. Ver ejecución desde el dashboard
 
-<!-- sanguino -->
+<!-- footer: 'Taller de Agentes con MCP🐍' -->
 
 ---
 
@@ -324,7 +335,7 @@ ENLACES A LA VERSION JAVA Y NODE
 ✅ Pruebas e2e para validar, de componente para desarrollar, usa herramientas como mcp-inspector  
 ✅ Observabilidad desde el inicio, usa herramientas como Langfuse
 
-<!-- josete -->
+<!-- footer: 'Taller de Agentes con MCP🐤' -->
 
 ---
 
@@ -333,6 +344,9 @@ ENLACES A LA VERSION JAVA Y NODE
 # 7. Preguntas❓ y Cierre!
 
 Os esperamos a todos el Jueves 3 de julio en Cafe con IA, mandaremos convocatoria en breve
+
+
+<!-- footer: 'Taller de Agentes con MCP🐤🐍' -->
 
 ---
 
@@ -346,7 +360,7 @@ Os esperamos a todos el Jueves 3 de julio en Cafe con IA, mandaremos convocatori
   * [Awesome MCP Servers](https://mcpservers.org/) ⚠️
   * [MCP.so](https://mcp.so/) ⚠️
 
-<!-- josete -->
+<!-- footer: 'Taller de Agentes con MCP🐤' -->
 
 ---
 
@@ -364,4 +378,5 @@ Os esperamos a todos el Jueves 3 de julio en Cafe con IA, mandaremos convocatori
       },
   ```
 
----
+<!-- footer: 'Taller de Agentes con MCP🐍' -->
+
