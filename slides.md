@@ -57,7 +57,7 @@ Con ollama:
 
 Sin ollama:
 
-- Conectar con Antropic, porporcionamos el api key
+- Conectar con Antropic, proporcionamos el api key
 
 </div>
 </div>
@@ -74,7 +74,7 @@ Sin ollama:
 ## 🗓️ Agenda
 
 1. Introducción 20"
-2. Crear primera servidor MCP (weather) 20"
+2. Crear primer servidor MCP (weather) 20"
 ☕️ Descanso 5" ⏱️ 
 3. Crear primer agente usando MCP 20"
 4. Crear y usar varios MCP, diferentes protocolos y cómo consumirlos (calendario) 20"
@@ -237,12 +237,12 @@ ENLACES A LA VERSION JAVA Y NODE
 
 ## Route to Production
 
-- **Objetivos Claros:** Definir el caso de uso y metas.
-- **Elección del Enfoque:** Agentes reactivos vs. workflows vs ...
-- **Pruebas Automatizadas:** Establecer un plan robusto de pruebas (regresión y progresión).
-- **Monitoreo y Logging:** Implementar herramientas desde el inicio.
-- **Escalabilidad y Seguridad:** Diseñar arquitectura escalable y segura.
-- **Costes:** Estimar los costes de creación, run y mantenimiento.
+- **Objetivos claros:** Definir el caso de uso y metas.
+- **Elección del enfoque:** Agentes reactivos vs. workflows vs ...
+- **Pruebas automatizadas:** Establecer un plan robusto de pruebas (regresión y progresión).
+- **Monitoreo y logging:** Implementar herramientas desde el inicio.
+- **Escalabilidad y seguridad:** Diseñar arquitectura escalable y segura.
+- **Costes:** Estimar los costes de creación, ejecución y mantenimiento.
 
 <!-- footer: 'Taller de Agentes con MCP🐍' -->
 
@@ -302,7 +302,7 @@ ENLACES A LA VERSION JAVA Y NODE
 
 * ¿Qué pasa con el agente, no funciona?
 * Si superamos los 32K tokens que admite Qwen 2.5, ¿qué hace el agente? 
-```spoiler, se queda con los últimos 32k.```
+```spoiler: se queda con los últimos 32k.```
 * ¿Cómo podemos solucionar esto?
 
 🛠️ **Actividad**: Vamos a hacer una poda a la respuesta. ¿Mejoran las respuestas? ¿Y el tiempo de ejecución?
@@ -343,7 +343,7 @@ ENLACES A LA VERSION JAVA Y NODE
 
 # 7. Preguntas❓ y Cierre!
 
-Os esperamos a todos el Jueves 3 de julio en Cafe con IA, mandaremos convocatoria en breve
+Os esperamos a todos el Jueves 3 de julio en Café con IA, mandaremos convocatoria en breve
 
 
 <!-- footer: 'Taller de Agentes con MCP🐤🐍' -->
@@ -366,7 +366,7 @@ Os esperamos a todos el Jueves 3 de julio en Cafe con IA, mandaremos convocatori
 
 ## Tips:
 
-  * Si usais mcps para claude, casi todos los de [Awesome MCP Servers](https://mcpservers.org/), suelen tener config por variables de entorno, pero no usan dotenv, desde la config de langchain podeis pasar variables de entorno así:
+  * Si usáis mcps para claude, casi todos los de [Awesome MCP Servers](https://mcpservers.org/), suelen tener configuración por variables de entorno, pero no usan dotenv, desde la configuración de langchain podéis pasar variables de entorno así:
 
   ``` python
       "weather": {
@@ -377,6 +377,4 @@ Os esperamos a todos el Jueves 3 de julio en Cafe con IA, mandaremos convocatori
           "AEMET_API_KEY": "eyJhbGciOiJI.....",
       },
   ```
-
-<!-- footer: 'Taller de Agentes con MCP🐍' -->
 

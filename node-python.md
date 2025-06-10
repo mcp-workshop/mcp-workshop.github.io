@@ -16,9 +16,9 @@ footer: 'Taller de Agentes con MCP'
 
 ---
 
-## Función de llamada a open meteo
+## Función de llamada a Open Meteo
 
-* Función para llamar a open meteo: https://open-meteo.com/en/docs
+* Función para llamar a Open Meteo: https://open-meteo.com/en/docs
 
 ``` json
 {
@@ -39,20 +39,20 @@ footer: 'Taller de Agentes con MCP'
 
 --- 
 
-## Función de llamada a open meteo
+## Función de llamada a Open Meteo
 
-1. En open meteo puedes elegir que datos quieres:
+1. En Open Meteo puedes elegir qué datos quieres:
 https://open-meteo.com/en/docs
-2. Llamada a usar https://api.open-meteo.com/v1/forecast?daily=precipitation_probability_max,wind_speed_10m_max,uv_index_max,temperature_2m_min,temperature_2m_max,rain_sum&timezone=Europe%2FBerlin&latitude={latitude}&longitude={longitud}
-3. Usar latitud y longitud de donde querais
+2. Llamada a usar: https://api.open-meteo.com/v1/forecast?daily=precipitation_probability_max,wind_speed_10m_max,uv_index_max,temperature_2m_min,temperature_2m_max,rain_sum&timezone=Europe%2FBerlin&latitude={latitude}&longitude={longitud}
+3. Usar latitud y longitud de donde queráis:
 https://www.latlong.net/
 
 ---
 
 ## Crear servidor MCP y convertir la función en herramienta
 
-* Pueden ser funciones locales o llamadas externas, sincronas o asincronas.
-* Cualrquier función puede ser una tool.
+* Pueden ser funciones locales o llamadas externas, síncronas o asíncronas.
+* Cualquier función puede ser una tool.
 
 🛠️ **Actividad**: Añadir una herramienta que use la función anterior
 
@@ -62,9 +62,9 @@ mcp = FastMCP("XXXX MCP Server")
 @mcp.tool()
 def load_bar(foo: str) -> dict:
     """
-    Descripcion de lo que hace la herramienta, params, etc
+    Descripción de lo que hace la herramienta, parámetros, etc.
     """
-    # return codigo 
+    # return código 
 ```
 
 > ![Github](images/github.png) **paso2**
@@ -80,9 +80,9 @@ mcp = FastMCP("XXXX MCP Server")
 @mcp.tool()
 def load_bar(foo: str) -> dict:
     """
-    Descripcion de lo que hace la herramienta, params, etc
+    Descripción de lo que hace la herramienta, parámetros, etc.
     """
-    # return codigo 
+    # return código 
 
 if __name__ == "__main__":
     mcp.run()
@@ -98,9 +98,9 @@ if __name__ == "__main__":
 * Conectamos a la herramienta usando comando y argumentos
 * Probamos la herramienta
 
-🛠️ **Actividad**: Usar mcp-inspector con el mcp anterior
+🛠️ **Actividad**: Usar mcp-inspector con el MCP anterior
 
-> Opcional: Si está postman 11, probar lo mismo con postman.
+> Opcional: Si está Postman 11, probar lo mismo con Postman.
 
 > ![Github](images/github.png) **paso2**
 
@@ -129,7 +129,7 @@ if __name__ == "__main__":
 
   https://spring.io/blog/2025/01/21/spring-ai-agentic-patterns
 
-🛠️ **Actividad**: Creamos un agente react, que es el más sencillo de desarrollar, y que llame a la herramienta anterior.
+🛠️ **Actividad**: Creamos un agente React, que es el más sencillo de desarrollar, y que llame a la herramienta anterior.
 
 > ![Github](images/github.png) **paso3**
 
@@ -217,8 +217,7 @@ tools = await client.get_tools()
 &nbsp;
 &nbsp;
 &nbsp;
-&nbsp;
-&nbsp;
+
 
 > volvemos a juntarnos despues del descanso
 
