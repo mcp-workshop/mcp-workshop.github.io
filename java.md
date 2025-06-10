@@ -12,7 +12,7 @@ footer: 'Taller de Agentes con MCP'
 
 # Taller de Agentes con MCP - 
 
-# 🟩 Node - Python 🐍 Edition
+# 🟩 Java Edition
 
 ---
 
@@ -43,7 +43,7 @@ footer: 'Taller de Agentes con MCP'
 
 1. En Open Meteo puedes elegir qué datos quieres:
 https://open-meteo.com/en/docs
-2. Llamada a usar: https://api.open-meteo.com/v1/forecast?daily=precipitation_probability_max,wind_speed_10m_max,uv_index_max,temperature_2m_min,temperature_2m_max,rain_sum&timezone=Europe%2FBerlin&latitude={latitude}&longitude={longitud}
+2. Llamada a usar: https://api.open-meteo.com/v1//forecast?latitude={latitude}&longitude={longitude}&hourly=temperature_2m,precipitation_probability,rain&timezone=Europe/Berlin
 3. Usar latitud y longitud de donde queráis:
 https://www.latlong.net/
 
@@ -51,43 +51,86 @@ https://www.latlong.net/
 
 ## Crear servidor MCP y convertir la función en herramienta
 
-* Pueden ser funciones locales o llamadas externas, síncronas o asíncronas.
-* Cualquier función puede ser una tool.
+1. Añadimos la dependencia de spring-ai
+2. Convertimos la funcion en @tool
+3. Creamos el bean de exposicion de @tools
+
 
 🛠️ **Actividad**: Añadir una herramienta que use la función anterior
 
-``` python
-mcp = FastMCP("XXXX MCP Server")
-
-@mcp.tool()
-def load_bar(foo: str) -> dict:
-    """
-    Descripción de lo que hace la herramienta, parámetros, etc.
-    """
-    # return código 
-```
-
-> ![Github](images/github.png) **paso2**
+``` xml
+<dependencies>
+	<dependency>
+		<groupId>org.springframework.ai</groupId>
+		<artifactId>spring-ai-starter-mcp-server</artifactId>
+	</dependency>
+</dependencies>
+  <dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.ai</groupId>
+      <artifactId>spring-ai-bom</artifactId>
+      <version>1.0.0</version>
+      <type>pom</type>
+      <scope>import</scope>
+    </dependency>
+  </dependencies>
+</dependencyManagement>
+````
 
 ---
 
-``` python
-from mcp.server.fastmcp import FastMCP
-from openweather import get_weather_data
+ En la configuracion, le decimos a Spring que no somos una aplicacion WEB y que no queremos log por consola, porque  colisionaria con la entrada/salida del server, ! ya que se comunican por stdin/stdout !
 
-mcp = FastMCP("XXXX MCP Server")
+ ``` yaml
+ spring:
+  main:
+    web-application-type: none
+logging:
+  pattern:
+    console:
+  file:
+    name: /tmp/server.log
+```   
 
-@mcp.tool()
-def load_bar(foo: str) -> dict:
-    """
-    Descripción de lo que hace la herramienta, parámetros, etc.
-    """
-    # return código 
+---
 
-if __name__ == "__main__":
-    mcp.run()
+Y ahora es donde convertimos nuestra funcion, a una @tool de MCP :
 
+``` java
+
+@Service
+public class WeatherService {
+   @Tool(description =
+      "Get the temperatures (in celsius), the rain percentage and the precipitation probability for a specific location for the next 7 days, hourly")
+  public WeatherPrediction getPrediction(
+      @ToolParam(description = "The location latitude") double latitude,
+      @ToolParam(description = "The location longitude") double longitude,
+      @ToolParam(description = "The local datetime of the prediction") LocalDateTime time)
+      {
+        .....
+      }
+}        
 ```
+
+Y , actualmente en Spring AI 1.0.0, debemos decirle a Spring que `registre` estas tools en su contexto, de la siguiente manera.
+
+```java
+  @Bean
+  MethodToolCallbackProvider methodToolCallbackProvider(WeatherService weatherService) {
+    return MethodToolCallbackProvider
+    .builder()
+    .toolObjects(weatherService)
+    .build();
+  }
+  ```
+
+---
+
+Y ahora, ! probemos la aplicacion con mcp-inspector !
+
+
+> ![Github](images/github.png) **paso2**
 
 ---
 
@@ -116,6 +159,102 @@ if __name__ == "__main__":
 
 # 3. Crear primer agente usando MCP
 
+🛠️ **Actividad**: Creamos un agente.
+
+Para crear un agente, necesitamos una aplicacion minima de spring-boot, con las siguientes dependencias:
+
+```xml
+<dependencies>
+  <dependency>
+    <groupId>org.springframework.ai</groupId>
+    <artifactId>spring-ai-starter-mcp-client</artifactId>
+  </dependency>
+  <dependency>
+    <groupId>org.springframework.ai</groupId>
+    <artifactId>spring-ai-starter-model-ollamac</artifactId>
+  </dependency>
+</dependencies>
+```
+
+Y ahora , tenemos que decirle al Cliente que servidores MCP va a usar, y para ellos vamos a usar el formato estandar definido por Anthropic
+
+```json
+{
+  "mcpServers": {
+    "google-calendar": {
+      "command": "java",
+      "args": [
+        "-jar",
+        "/tmp/OpenWeather-1.0-SNAPSHOT.jar"
+      ],
+      "env": {}
+    }
+  }
+}
+```
+---
+
+Ahora, vamos a decirle a Spring que use esta configuracion.
+
+```yaml
+logging:
+    level:
+        io:
+            modelcontextprotocol:
+                client: DEBUG
+                spec: DEBUG
+    file:
+        name: /tmp/client.log
+    pattern:
+        console:
+spring:
+    ai:
+        ollama:
+          base-url: http://localhost:11434
+          chat:
+              model: qwen2.5
+              options:
+                  seed: 123456789
+                  temperature: 0.9
+        mcp:
+            client:
+                stdio:
+                    servers-configuration: "classpath:/mcp-servers-config.json"
+    application:
+        name: AssistantClient
+    main:
+        web-application-type: none
+        banner-mode: log        
+```
+
+---
+
+El ultimo paso , es instanciar un `ChatClient`, el objeto de Spring que interactua con los servidores MCP, y con el LLM.
+
+```java
+  @Bean
+  ChatClient chatClient(
+      ChatClient.Builder chatClientBuilder, ToolCallbackProvider tools) {
+      return chatClientBuilder
+        .defaultSystem(prompt)
+        .defaultToolCallbacks(tools)
+        .build();
+      }
+  ```
+
+Ahora, ya estamos preparados para interactuar :
+
+```java
+@Autowired private ChatClient chatClient;
+.
+.
+String comando = "¿ Que probabilidad de lluvia habrá mañana en Logroño? ";
+String response = chatClient
+    .prompt(comando)
+    .call()
+    .content();
+System.out.println(response);    
+```
 ---
 
 ## Patrones de agente básico
@@ -129,37 +268,8 @@ if __name__ == "__main__":
 
   https://spring.io/blog/2025/01/21/spring-ai-agentic-patterns
 
-🛠️ **Actividad**: Creamos un agente React, que es el más sencillo de desarrollar, y que llame a la herramienta anterior.
 
 > ![Github](images/github.png) **paso3**
-
----
-``` python
-model = ChatOllama(model="qwen2.5")
-
-server_params = StdioServerParameters(
-  command="uv",
-  args=["run", "python", "tool.py")],
-)
-
-async with stdio_client(server_params) as (read, write):
-  async with ClientSession(read, write) as session:
-      await session.initialize()
-      tools = await load_mcp_tools(session)
-
-
-      agent = create_react_agent(model, tools)
-              
-      messages = [
-        {"role": "system", "content": "Eres un agente"},
-        {"role": "user", "content": "¿Qué temperatura va a hacer mañana?"}
-      ]
-
-      agent_response = None
-      async for agent_response in agent.astream({"messages": messages}):
-        print(agent_response)
-        print("-----------------")
-```
 
 ---
 
@@ -169,15 +279,19 @@ async with stdio_client(server_params) as (read, write):
 
 ---
 
-## Crear una tool de calendario
+## Crear una tool de calendario usando HTTP-SSE
 
 * Hacer lo mismo pero llamando a un calendario
-* Pista: usar librería para entender CalDAV
 * Exponerla como REST en vez de STDIO
 
-🛠️ **Actividad**: Añadir una función que llame a un calendario ICS y devuelva un JSON con tus eventos
+🛠️ **Actividad**: Vamos a añadir MCP SSE a una aplicacion de google calendar.
 
-CALENDAR_URL=https://calendar.google.com/calendar/ical/0f7e8a7191ceda59262822a5fbed28f9dedae882137d0af94eddbbbdae292bd4%40group.calendar.google.com/public/basic.ics
+Los pasos son los mismos que el servidor STDIO, pero con la diferencia de que la dependencia a importar ya no es `spring-ai-starter-mcp-server`, sino `spring-ai-starter-mcp-server-webmvc`.
+
+Veamoslo en accion !
+
+---
+
 
 > ![Github](images/github.png) **paso5**
 
@@ -185,20 +299,21 @@ CALENDAR_URL=https://calendar.google.com/calendar/ical/0f7e8a7191ceda59262822a5f
 
 ## Usar las dos tools desde el agente
 
-``` python
-client = MultiServerMCPClient({
-  "weather": {
-    "command": "uv",
-    "args": ["run", "python", os.path.join(os.path.dirname(__file__), "../tools/weather/main.py")],
-    "transport": "stdio",
-  },
-  "calendar": {
-    "url": "http://127.0.0.1:8000/sse",
-    "transport": "sse",
-  },
-})
 
-tools = await client.get_tools()
+Ahora, habrémos de añadir el servidor 'remoto' a nuestro Cliente MCP.
+
+``` yaml
+spring:
+    ai:
+        mcp:
+            client:
+                sse:
+                    connections:
+                        calendar:
+                            url: http://localhost:8080
+```
+
+
 ```
 🛠️ **Actividad**: Haz que tu agente use las dos herramientas en una sola consulta. 
 💡 probad desde vuestro agente los MCP de otro compañero en otro lenguaje.
