@@ -94,6 +94,20 @@ Apendices, Recursos y Tips 10"
 
 ---
 
+## Recordemos, ¿que es un agente?
+
+<img src="images/queesunagente.png" class="centered" alt="MCP Diagram" />
+
+<!-- footer: 'Taller de Agentes con MCP🐍' -->
+---
+
+## Recordemos, ¿que es un herramienta?
+
+<img src="images/quesonlasherramientas.png" class="centered" alt="MCP Diagram" />
+
+<!-- footer: 'Taller de Agentes con MCP🐍' -->
+---
+
 ## ¿Qué es MCP?
 
 
@@ -107,7 +121,7 @@ Apendices, Recursos y Tips 10"
 
 * **Model Context Protocol**
 
-* Define cómo se comunican los agentes con modelos, recursos y herramientas.
+* Define un estandar de cómo se comunican los agentes con las herramientas.
 * Inspirado en arquitecturas de cliente-servidor , microservicios y flujos de agentes.
 * Modular, extensible y agnóstico del lenguaje.
 * Basado en JSON-RPC
