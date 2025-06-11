@@ -224,7 +224,16 @@ Apendices, Recursos y Tips 10"
 
 # 2. Primer servidor MCP
 
-ENLACES A LA VERSION JAVA Y NODE
+
+&nbsp;
+[☕️ Java Edition](https://mcp-workshop.github.io/java)
+
+
+&nbsp;
+
+[🟩 Node - Python 🐍 Edition](https://mcp-workshop.github.io/node-python)
+
+&nbsp;
 
 > nos separamos en equipos
 
