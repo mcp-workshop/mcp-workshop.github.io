@@ -33,9 +33,9 @@ footer: 'Taller de Agentes con MCP'
 
 ## Objetivos
 
-* Introducir el concepto de agentes usando MCP. ¿Por qué es relevante MCP hoy?
-* Implementar herramientas y agentes con Java, Python y JavaScript.
-* Crear comunidad en ING
+- Introducir el concepto de agentes usando MCP. ¿Por qué es relevante MCP hoy?
+- Implementar herramientas y agentes con Java, Python y JavaScript.
+- Crear comunidad en ING
 
 <!-- footer: 'Taller de Agentes con MCP🐤' -->
 ---
@@ -119,12 +119,12 @@ Apendices, Recursos y Tips 10"
 </div>
 <div>
 
-* **Model Context Protocol**
+- **Model Context Protocol**
 
-* Define un estandar de cómo se comunican los agentes con las herramientas.
-* Inspirado en arquitecturas de cliente-servidor , microservicios y flujos de agentes.
-* Modular, extensible y agnóstico del lenguaje.
-* Basado en JSON-RPC
+- Define un estandar de cómo se comunican los agentes con las herramientas.
+- Inspirado en arquitecturas de cliente-servidor , microservicios y flujos de agentes.
+- Modular, extensible y agnóstico del lenguaje.
+- Basado en JSON-RPC
 
 </div>
 </div>
@@ -142,11 +142,11 @@ Apendices, Recursos y Tips 10"
 
 ## ¿Por qué MCP?
 
-* Modularidad y separación de responsabilidades
-* Permite la reutilización y escalado
-* Facilita el testing, evolución, depuración, trazabilidad y despliegue
-* Habilita la interoperabilidad entre diferentes tecnologías
-* Standard de facto
+- Modularidad y separación de responsabilidades
+- Permite la reutilización y escalado
+- Facilita el testing, evolución, depuración, trazabilidad y despliegue
+- Habilita la interoperabilidad entre diferentes tecnologías
+- Standard de facto
 
 
 
@@ -173,9 +173,9 @@ Apendices, Recursos y Tips 10"
 
 ### Transportes:
 
-* STDIO: “Ideal para scripts y herramientas locales.”
-* SSE: “Para conexiones HTTP persistentes”
-* Streamable HTTP: “El más moderno, permite respuestas en tiempo real y escalabilidad.”
+- STDIO: “Ideal para scripts y herramientas locales.”
+- SSE: “Para conexiones HTTP persistentes”
+- Streamable HTTP: “El más moderno, permite respuestas en tiempo real y escalabilidad.”
 
 
 </div>
@@ -183,11 +183,11 @@ Apendices, Recursos y Tips 10"
 
 ### Primitivas:
 
-* @tools
-* @prompts
-* @resources
-* @sampling
-* @roots
+- @tools
+- @prompts
+- @resources
+- @sampling
+- @roots
 
 </div>
 </div>
@@ -207,15 +207,15 @@ Apendices, Recursos y Tips 10"
 
 ## Clonamos el taller
 
-* Java: Spring AI
-* Node.js: Langchain/graph + mcp sdk
-* Python: Langchain/graph + mcp sdk
+- Java: Spring AI
+- Node.js: Langchain/graph + mcp sdk
+- Python: Langchain/graph + mcp sdk
 
 🛠️ **Actividad**: Clonar proyecto base y ejecutar un ejemplo simple en cada lenguaje
 
-  * Java: https://github.com/mcp-workshop/java-xxxxxx
-  * Node: https://github.com/mcp-workshop/taller-agentes-mcp-nodejs
-  * Python: https://github.com/mcp-workshop/taller-agentes-mcp-python
+  - Java: https://github.com/mcp-workshop/java-xxxxxx
+  - Node: https://github.com/mcp-workshop/taller-agentes-mcp-nodejs
+  - Python: https://github.com/mcp-workshop/taller-agentes-mcp-python
 
 <!-- footer: 'Taller de Agentes con MCP🐍' -->
 
@@ -323,10 +323,10 @@ Apendices, Recursos y Tips 10"
 
 ## El tamaño del prompt
 
-* ¿Qué pasa con el agente, no funciona?
-* Si superamos los 32K tokens que admite Qwen 2.5, ¿qué hace el agente? 
+- ¿Qué pasa con el agente, no funciona?
+- Si superamos los 32K tokens que admite Qwen 2.5, ¿qué hace el agente? 
 ```spoiler: se queda con los últimos 32k.```
-* ¿Cómo podemos solucionar esto?
+- ¿Cómo podemos solucionar esto?
 
 🛠️ **Actividad**: Vamos a hacer una poda a la respuesta. ¿Mejoran las respuestas? ¿Y el tiempo de ejecución?
 
@@ -338,8 +338,8 @@ Apendices, Recursos y Tips 10"
 
 ## Observabilidad con Langfuse
 
-* Trazas, logs, métricas y analítica de ejecución de agentes
-* Visualización y debug / troubleshooting en tiempo real
+- Trazas, logs, métricas y analítica de ejecución de agentes
+- Visualización y debug / troubleshooting en tiempo real
 
 📟️ **Demo**:
 
@@ -375,14 +375,14 @@ Os esperamos a todos el Jueves 3 de julio en Café con IA, mandaremos convocator
 
 ## Recursos:
 
-  * [modelcontextprotocol.io](https://modelcontextprotocol.io/)
-  * [GitHub MCP](https://github.com/modelcontextprotocol)
-  * [mcp-inspector](https://github.com/modelcontextprotocol/inspector)
-  * [Langfuse](https://langfuse.com)
-  * [Claude](https://claude.ai/login?returnTo=%2F%3F#features)
-  * [Official example MCP Servers](https://github.com/modelcontextprotocol/servers) ⚠️
-  * [Awesome MCP Servers](https://mcpservers.org/) ⚠️
-  * [MCP.so](https://mcp.so/) ⚠️
+  - [modelcontextprotocol.io](https://modelcontextprotocol.io/)
+  - [GitHub MCP](https://github.com/modelcontextprotocol)
+  - [mcp-inspector](https://github.com/modelcontextprotocol/inspector)
+  - [Langfuse](https://langfuse.com)
+  - [Claude](https://claude.ai/login?returnTo=%2F%3F#features)
+  - [Official example MCP Servers](https://github.com/modelcontextprotocol/servers) ⚠️
+  - [Awesome MCP Servers](https://mcpservers.org/) ⚠️
+  - [MCP.so](https://mcp.so/) ⚠️
 
 <!-- footer: 'Taller de Agentes con MCP🐤' -->
 
@@ -390,9 +390,9 @@ Os esperamos a todos el Jueves 3 de julio en Café con IA, mandaremos convocator
 
 ## Tips:
 
-  * Claude Desktop es una forma muy facil de usar heramientas desde agente sin tener que montar nada. Muchos de los servers que se ven tiene ejemplos para claude, como por ejemplo: https://github.com/elastic/mcp-server-elasticsearch
+  - Claude Desktop es una forma muy facil de usar heramientas desde agente sin tener que montar nada. Muchos de los servers que se ven tiene ejemplos para claude, como por ejemplo: https://github.com/elastic/mcp-server-elasticsearch
   
-  * Muchos suelen tener configuración por variables de entorno, pero no usan dotenv, desde la configuración de langchain podéis pasar variables de entorno así:
+  - Muchos suelen tener configuración por variables de entorno, pero no usan dotenv, desde la configuración de langchain podéis pasar variables de entorno así:
 
   ``` python
       "xxx": {
