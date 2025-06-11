@@ -18,7 +18,7 @@ footer: 'Taller de Agentes con MCP'
 
 ## Función de llamada a Open Meteo
 
-* Función para llamar a Open Meteo: https://open-meteo.com/en/docs
+- Función para llamar a Open Meteo: https://open-meteo.com/en/docs
 
 ``` json
 {
@@ -138,8 +138,8 @@ Y ahora, ! probemos la aplicacion con mcp-inspector !
 
 ```$ npx @modelcontextprotocol/inspector```
 
-* Conectamos a la herramienta usando comando y argumentos
-* Probamos la herramienta
+- Conectamos a la herramienta usando comando y argumentos
+- Probamos la herramienta
 
 🛠️ **Actividad**: Usar mcp-inspector con el MCP anterior
 
@@ -259,12 +259,12 @@ System.out.println(response);
 
 ## Patrones de agente básico
 
-  * **Reasoning and Acting (ReAct)**: Respuesta inmediata a estímulos.
-  * **Workflow**: Secuencias predefinidas.
-  * **Planificador/Ejecutor**: Decisión separada de ejecución.
-  * **Supervisor**: Monitoreo y corrección.
-  * **Colaborativo**: Coordinación con otros agentes o humanos.
-  * **Híbrido**: Combinación de enfoques.
+  - **Reasoning and Acting (ReAct)**: Respuesta inmediata a estímulos.
+  - **Workflow**: Secuencias predefinidas.
+  - **Planificador/Ejecutor**: Decisión separada de ejecución.
+  - **Supervisor**: Monitoreo y corrección.
+  - **Colaborativo**: Coordinación con otros agentes o humanos.
+  - **Híbrido**: Combinación de enfoques.
 
   https://spring.io/blog/2025/01/21/spring-ai-agentic-patterns
 
@@ -281,8 +281,8 @@ System.out.println(response);
 
 ## Crear una tool de calendario usando HTTP-SSE
 
-* Hacer lo mismo pero llamando a un calendario
-* Exponerla como REST en vez de STDIO
+- Hacer lo mismo pero llamando a un calendario
+- Exponerla como REST en vez de STDIO
 
 🛠️ **Actividad**: Vamos a añadir MCP SSE a una aplicacion de google calendar.
 
@@ -336,14 +336,3 @@ spring:
 > volvemos a juntarnos despues del descanso
 
 ---
-
-## Apéndice: listado de pasos y actividades
-
-🛠️ **Actividad paso0**: Clonar proyecto base y ejecutar un ejemplo simple en cada lenguaje
-🛠️ **Actividad paso1**: Añadir una función que le pases el código AEMET y devuelva la respuesta de AEMET cruda
-🛠️ **Actividad paso2**: Añadir una herramienta que use la función anterior
-🛠️ **Actividad paso3**: Creamos un agente react, que es el más sencillo de desarrollar, y que llame a la herramienta anterior.
-🛠️ **Actividad paso4**: Vamos a hacer una poda a la respuesta de AEMET. ¿Mejoran las respuestas? ¿Y el tiempo de ejecución?
-🛠️ **Actividad paso5**: Añadir una función que llame a un calendario ICS y devuelva un JSON con tus eventos
-🛠️ **Actividad paso6**: Haz que tu agente use las dos herramientas en una sola consulta
-🛠️ **Demo paso7**: Uso de LangFuse

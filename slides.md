@@ -73,16 +73,16 @@ Sin ollama:
 
 ## 🗓️ Agenda
 
-1. Introducción 20"
-2. Crear primer servidor MCP (weather) 20"
+1. Introducción
+2. Crear primer servidor MCP (weather)
 ☕️ Descanso 5" ⏱️ 
-3. Crear primer agente usando MCP 20"
-4. Crear y usar varios MCP, diferentes protocolos y cómo consumirlos (calendario) 20"
-5. El futuro de MCP 10 "
+3. Crear primer agente usando MCP
+4. Crear y usar varios MCP, diferentes protocolos y cómo consumirlos (calendario)
+5. El futuro de MCP
 ☕️ Descanso 5" ⏱️ 
-6. Route to production! (drive) 20"
-7. Preguntas y Cierre ❓ 30"
-Apendices, Recursos y Tips 10"
+6. Route to production! (drive)
+7. Preguntas y Cierre ❓
+   Recursos y Tips
 
 <!-- footer: 'Taller de Agentes con MCP🐍' -->
 

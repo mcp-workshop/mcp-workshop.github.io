@@ -18,7 +18,7 @@ footer: 'Taller de Agentes con MCP'
 
 ## Función de llamada a Open Meteo
 
-* Función para llamar a Open Meteo: https://open-meteo.com/en/docs
+- Función para llamar a Open Meteo: https://open-meteo.com/en/docs
 
 ``` json
 {
@@ -51,8 +51,8 @@ https://www.latlong.net/
 
 ## 🐍 Crear servidor MCP y convertir la función en herramienta
 
-* Pueden ser funciones locales o llamadas externas, síncronas o asíncronas.
-* Cualquier función puede ser una tool.
+- Pueden ser funciones locales o llamadas externas, síncronas o asíncronas.
+- Cualquier función puede ser una tool.
 
 🛠️ **Actividad**: Añadir una herramienta que use la función anterior
 
@@ -95,8 +95,8 @@ if __name__ == "__main__":
 
 ## 🟩 Crear servidor MCP y convertir la función en herramienta
 
-* Pueden ser funciones locales o llamadas externas, síncronas o asíncronas.
-* Cualquier función puede ser una tool.
+- Pueden ser funciones locales o llamadas externas, síncronas o asíncronas.
+- Cualquier función puede ser una tool.
 
 🛠️ **Actividad**: Añadir una herramienta que use la función anterior
 
@@ -144,8 +144,8 @@ await server.connect(new StdioServerTransport());
 
 ```$ npx @modelcontextprotocol/inspector```
 
-* Conectamos a la herramienta usando comando y argumentos
-* Probamos la herramienta
+- Conectamos a la herramienta usando comando y argumentos
+- Probamos la herramienta
 
 🛠️ **Actividad**: Usar mcp-inspector con el MCP anterior
 
@@ -169,12 +169,12 @@ await server.connect(new StdioServerTransport());
 
 ## Patrones de agente básico
 
-  * **Reasoning and Acting (ReAct)**: Respuesta inmediata a estímulos.
-  * **Workflow**: Secuencias predefinidas.
-  * **Planificador/Ejecutor**: Decisión separada de ejecución.
-  * **Supervisor**: Monitoreo y corrección.
-  * **Colaborativo**: Coordinación con otros agentes o humanos.
-  * **Híbrido**: Combinación de enfoques.
+  - **Reasoning and Acting (ReAct)**: Respuesta inmediata a estímulos.
+  - **Workflow**: Secuencias predefinidas.
+  - **Planificador/Ejecutor**: Decisión separada de ejecución.
+  - **Supervisor**: Monitoreo y corrección.
+  - **Colaborativo**: Coordinación con otros agentes o humanos.
+  - **Híbrido**: Combinación de enfoques.
 
   https://spring.io/blog/2025/01/21/spring-ai-agentic-patterns
 
@@ -273,9 +273,9 @@ const model = new ChatAnthropic({ model: "claude-3-5-haiku-latest" });
 
 ## Crear una tool de calendario
 
-* Hacer lo mismo pero llamando a un calendario
-* Pista: usar librería para entender CalDAV
-* Exponerla como REST en vez de STDIO
+- Hacer lo mismo pero llamando a un calendario
+- Pista: usar librería para entender CalDAV
+- Exponerla como REST en vez de STDIO
 
 🛠️ **Actividad**: Añadir una función que llame a un calendario ICS y devuelva un JSON con tus eventos
 
