@@ -371,6 +371,7 @@ Os esperamos a todos el Jueves 3 de julio en Café con IA, mandaremos convocator
   * [mcp-inspector](https://github.com/modelcontextprotocol/inspector)
   * [Langfuse](https://langfuse.com)
   * [Claude](https://claude.ai/login?returnTo=%2F%3F#features)
+  * [Official example MCP Servers](https://github.com/modelcontextprotocol/servers) ⚠️
   * [Awesome MCP Servers](https://mcpservers.org/) ⚠️
   * [MCP.so](https://mcp.so/) ⚠️
 
@@ -380,15 +381,18 @@ Os esperamos a todos el Jueves 3 de julio en Café con IA, mandaremos convocator
 
 ## Tips:
 
-  * Si usáis mcps para claude, casi todos los de [Awesome MCP Servers](https://mcpservers.org/), suelen tener configuración por variables de entorno, pero no usan dotenv, desde la configuración de langchain podéis pasar variables de entorno así:
+  * Claude Desktop es una forma muy facil de usar heramientas desde agente sin tener que montar nada. Muchos de los servers que se ven tiene ejemplos para claude, como por ejemplo: https://github.com/elastic/mcp-server-elasticsearch
+  
+  * Muchos suelen tener configuración por variables de entorno, pero no usan dotenv, desde la configuración de langchain podéis pasar variables de entorno así:
 
   ``` python
-      "weather": {
+      "xxx": {
         "command": "uv",
-        "args": ["run", "python", "weather.py"],
+        "args": ["run", "python", "xxxx.py"],
         "transport": "stdio",
         "env":
-          "AEMET_API_KEY": "eyJhbGciOiJI.....",
+          "API_KEY": "eyJhbGciOiJI.....",
       },
   ```
 
+<!-- footer: 'Taller de Agentes con MCP🐍' -->
