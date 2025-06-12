@@ -157,7 +157,7 @@ await server.connect(new StdioServerTransport());
 
 <!-- _class: lead -->
 
-# ☕️ Descanso 5" ⏱️ 
+# ☕️ Descanso 5 minutos ⏱️ 
 
 ---
 
@@ -341,7 +341,7 @@ const tools = await client.getTools();
 ---
 <!-- _class: lead -->
 
-# ☕️ Descanso 5" ⏱️ 
+# ☕️ Descanso 5 minutos ⏱️ 
 
 &nbsp;
 &nbsp;

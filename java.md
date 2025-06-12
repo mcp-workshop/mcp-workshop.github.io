@@ -151,7 +151,7 @@ Y ahora, ! probemos la aplicacion con mcp-inspector !
 
 <!-- _class: lead -->
 
-# ☕️ Descanso 5" ⏱️ 
+# ☕️ Descanso 5 minutos ⏱️ 
 
 ---
 
@@ -325,7 +325,7 @@ spring:
 ---
 <!-- _class: lead -->
 
-# ☕️ Descanso 5" ⏱️ 
+# ☕️ Descanso 5 minutos ⏱️ 
 
 &nbsp;
 &nbsp;

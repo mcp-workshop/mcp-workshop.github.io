@@ -75,11 +75,11 @@ Sin ollama:
 
 1. Introducción
 2. Crear primer servidor MCP (weather)
-☕️ Descanso 5" ⏱️ 
+☕️ Descanso 5 minutos ⏱️ 
 3. Crear primer agente usando MCP
 4. Crear y usar varios MCP, diferentes protocolos y cómo consumirlos (calendario)
 5. El futuro de MCP
-☕️ Descanso 5" ⏱️ 
+☕️ Descanso 5 minutos ⏱️ 
 6. Route to production! (drive)
 7. Preguntas y Cierre ❓
    Recursos y Tips
@@ -213,7 +213,7 @@ Sin ollama:
 
 🛠️ **Actividad**: Clonar proyecto base y ejecutar un ejemplo simple en cada lenguaje
 
-  - Java: https://github.com/mcp-workshop/java-xxxxxx
+  - Java: https://github.com/mcp-workshop/java-open-weather.git
   - Node: https://github.com/mcp-workshop/taller-agentes-mcp-nodejs
   - Python: https://github.com/mcp-workshop/taller-agentes-mcp-python
 
@@ -248,7 +248,7 @@ Sin ollama:
 ---
 <!-- _class: lead -->
 
-# ☕️ Descanso 5" ⏱️ 
+# ☕️ Descanso 5 minutos ⏱️ 
 
 ---
 
@@ -383,6 +383,7 @@ Os esperamos a todos el Jueves 3 de julio en Café con IA, mandaremos convocator
   - [Official example MCP Servers](https://github.com/modelcontextprotocol/servers) ⚠️
   - [Awesome MCP Servers](https://mcpservers.org/) ⚠️
   - [MCP.so](https://mcp.so/) ⚠️
+  - [Diving into MCP](https://blog.fka.dev/blog/2025-06-11-diving-into-mcp-advanced-server-capabilities/)
 
 <!-- footer: 'Taller de Agentes con MCP🐤' -->
 
