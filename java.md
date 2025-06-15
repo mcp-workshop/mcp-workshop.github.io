@@ -35,6 +35,8 @@ footer: 'Taller de Agentes con MCP'
 }
 ```
 
+https://github.com/mcp-workshop/java-open-weather
+
 > ![Github](images/github.png) **paso1**
 
 --- 
@@ -171,7 +173,7 @@ Para crear un agente, necesitamos una aplicacion minima de spring-boot, con las 
   </dependency>
   <dependency>
     <groupId>org.springframework.ai</groupId>
-    <artifactId>spring-ai-starter-model-ollamac</artifactId>
+    <artifactId>spring-ai-starter-model-ollama</artifactId>
   </dependency>
 </dependencies>
 ```
